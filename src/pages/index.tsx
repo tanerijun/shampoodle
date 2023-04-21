@@ -41,6 +41,8 @@ const Home: NextPage = () => {
             <div key={post.id}>{post.content}</div>
           ))}
         </div>
+
+        <button className="btn-error btn">Error</button>
       </main>
     </>
   );
