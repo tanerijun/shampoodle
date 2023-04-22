@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["Shampoodle"]
+  "cSpell.words": ["Shampoodle"],
+  "vue.features.codeActions.enable": false
 }
