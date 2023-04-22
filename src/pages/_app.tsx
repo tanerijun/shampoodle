@@ -7,7 +7,7 @@ import { ThemeProvider } from "next-themes";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider disableTransitionOnChange>
+    <ThemeProvider disableTransitionOnChange attribute="class">
       <ClerkProvider
         appearance={{
           baseTheme: dark,

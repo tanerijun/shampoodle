@@ -6,7 +6,7 @@ import Moon from "~/components/icons/Moon";
 
 export default function Navbar() {
   return (
-    <div className="navbar justify-between bg-base-100">
+    <div className="flex justify-between bg-gray-200 p-4">
       <Logo />
       <div className="flex items-center gap-4">
         <ThemeSwitcher />
@@ -17,7 +17,7 @@ export default function Navbar() {
 }
 
 function Logo() {
-  return <div className="text-4xl text-primary">Shampoodle</div>;
+  return <div className="text-4xl">Shampoodle</div>;
 }
 
 function ThemeSwitcher() {
@@ -32,35 +32,29 @@ function ThemeSwitcher() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <div></div>;
-  }
-
   return (
-    <button className="btn-ghost btn-circle btn" onClick={toggleTheme}>
-      {theme === "dark" ? <Moon className="h-6 w-6" /> : <Sun />}
+    <button className="border border-gray-600 p-2" onClick={toggleTheme}>
+      {!mounted ? (
+        <Sun className="h-4 w-4" />
+      ) : theme === "dark" ? (
+        <Moon className="h-4 w-4" />
+      ) : (
+        <Sun className="h-4 w-4" />
+      )}
     </button>
   );
 }
 
 function UserInfo() {
-  const { isLoaded, isSignedIn, user } = useUser();
-
-  if (!isLoaded || !isSignedIn || !user) {
-    return (
-      <div className="placeholder avatar">
-        <div className="w-12 rounded-full bg-neutral-focus text-neutral-content">
-          <span className="text-xs">?</span>
-        </div>
-      </div>
-    );
-  }
+  const { user } = useUser();
 
   return (
-    <div className="avatar">
-      <div className="h-12 w-12 rounded-full">
+    <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full object-cover">
+      {user ? (
         <img src={user.profileImageUrl} alt={user.username || "profile"} />
-      </div>
+      ) : (
+        <span>?</span> // TODO: replace with default avatar
+      )}
     </div>
   );
 }
