@@ -5,7 +5,7 @@ export default function PostWizard() {
   const { user } = useUser();
 
   if (!user) {
-    return <div>Not logged in</div>;
+    return null;
   }
 
   return (
