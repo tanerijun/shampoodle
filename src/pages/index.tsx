@@ -1,27 +1,49 @@
 import { type NextPage } from "next";
-import { useUser } from "@clerk/nextjs";
-import { Container } from "@nextui-org/react";
+import { Container, Loading, Text, type CSS, Spacer } from "@nextui-org/react";
 import { api } from "~/utils/api";
+import CreatePostWizard from "~/components/CreatePostWizard";
+import PostsRenderer from "~/components/PostsRenderer";
+
+const containerStyles: CSS = {
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
 
 const Home: NextPage = () => {
-  const { data: posts } = api.post.getAll.useQuery();
+  const { data: posts, isLoading } = api.post.getAll.useQuery();
 
   console.log(posts); // DEBUG
 
-  const { isLoaded, isSignedIn, user } = useUser();
-  const noUserData = !isLoaded || !isSignedIn;
+  if (isLoading) {
+    return (
+      <Container fluid css={containerStyles}>
+        <Loading size="lg">
+          <Text>Finding shower thoughts from all over the world...</Text>
+        </Loading>
+      </Container>
+    );
+  }
+
+  if (!posts) {
+    return (
+      <Container fluid css={containerStyles}>
+        <Text>
+          There&apos;re no shower thoughts here. Maybe you can add one?
+        </Text>
+      </Container>
+    );
+  }
 
   return (
-    <>
-      <Container fluid as="main">
-        <h1>Hello, {noUserData ? "Stranger" : user?.firstName}</h1>
-        <div>
-          {posts?.map((post) => (
-            <div key={post.id}>{post.content}</div>
-          ))}
-        </div>
-      </Container>
-    </>
+    <Container fluid as="main" css={containerStyles}>
+      <Spacer y={2} />
+      <CreatePostWizard />
+      <Spacer y={2} />
+      <PostsRenderer posts={posts} />
+    </Container>
   );
 };
 
