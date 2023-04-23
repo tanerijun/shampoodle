@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
-import { Button } from "@nextui-org/react";
+import { useUser } from "@clerk/nextjs";
+import { Container } from "@nextui-org/react";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
@@ -13,27 +13,14 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <main>
+      <Container fluid as="main">
         <h1>Hello, {noUserData ? "Stranger" : user?.firstName}</h1>
-
-        <div>
-          {noUserData ? (
-            <SignInButton mode="modal">
-              <Button>Sign In</Button>
-            </SignInButton>
-          ) : (
-            <SignOutButton>
-              <Button>Sign Out</Button>
-            </SignOutButton>
-          )}
-        </div>
-
         <div>
           {posts?.map((post) => (
             <div key={post.id}>{post.content}</div>
           ))}
         </div>
-      </main>
+      </Container>
     </>
   );
 };

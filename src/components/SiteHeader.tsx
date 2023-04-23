@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useUser } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import Sun from "~/components/icons/Sun";
 import Moon from "~/components/icons/Moon";
-import { Avatar, Button, Navbar, Text } from "@nextui-org/react";
+import { Avatar, Button, Navbar, Popover, Text } from "@nextui-org/react";
 
 export default function SiteHeader() {
   return (
@@ -59,7 +59,30 @@ function ThemeSwitcher() {
 function UserInfo() {
   const { user } = useUser();
 
+  if (!user) {
+    return (
+      <SignInButton>
+        <Button>Sign In</Button>
+      </SignInButton>
+    );
+  }
+
   return (
-    <Avatar src={user?.profileImageUrl} text={user?.username ?? undefined} />
+    <Popover>
+      <Popover.Trigger>
+        <Avatar
+          src={user?.profileImageUrl}
+          text={user?.username ?? "👋"}
+          pointer
+          zoomed
+          alt="User avatar"
+        />
+      </Popover.Trigger>
+      <Popover.Content>
+        <SignOutButton>
+          <Button>Sign Out</Button>
+        </SignOutButton>
+      </Popover.Content>
+    </Popover>
   );
 }
