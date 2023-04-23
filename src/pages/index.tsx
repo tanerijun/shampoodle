@@ -1,4 +1,5 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { Button, Text } from "@nextui-org/react";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Navbar from "~/components/Navbar";
@@ -52,6 +53,8 @@ const Home: NextPage = () => {
         </div>
 
         <button className="btn-error btn">Error</button>
+        <Button color="primary">Auto</Button>
+        <Text h1>Next UI</Text>
       </main>
     </>
   );
