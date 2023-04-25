@@ -3,6 +3,7 @@ import { Container, Loading, Text, type CSS, Spacer } from "@nextui-org/react";
 import { api } from "~/utils/api";
 import CreatePostWizard from "~/components/CreatePostWizard";
 import PostsRenderer from "~/components/PostsRenderer";
+import Divider from "~/components/ui/Divider";
 
 const containerStyles: CSS = {
   minHeight: "100vh",
@@ -41,7 +42,9 @@ const Home: NextPage = () => {
     <Container fluid as="main" css={containerStyles}>
       <Spacer y={2} />
       <CreatePostWizard />
-      <Spacer y={2} />
+      <Spacer y={1} />
+      <Divider />
+      <Spacer y={1} />
       <PostsRenderer posts={posts} />
     </Container>
   );
