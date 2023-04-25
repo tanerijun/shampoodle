@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import { Container, Loading, Text, type CSS, Spacer } from "@nextui-org/react";
 import { api } from "~/utils/api";
+import { SignedIn } from "@clerk/nextjs";
 import CreatePostWizard from "~/components/CreatePostWizard";
 import PostsRenderer from "~/components/PostsRenderer";
 import Divider from "~/components/ui/Divider";
@@ -40,10 +41,12 @@ const Home: NextPage = () => {
 
   return (
     <Container fluid as="main" css={containerStyles}>
-      <Spacer y={2} />
-      <CreatePostWizard />
-      <Spacer y={1} />
-      <Divider />
+      <SignedIn>
+        <Spacer y={2} />
+        <CreatePostWizard />
+        <Spacer y={1} />
+        <Divider />
+      </SignedIn>
       <Spacer y={1} />
       <PostsRenderer posts={posts} />
     </Container>
