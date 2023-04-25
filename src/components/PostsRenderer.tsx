@@ -31,7 +31,7 @@ function PostView({ post, author }: Post) {
           alignItems: "end",
         }}
       >
-        <Avatar src={author?.profilePicture} text={name} />
+        <Avatar src={author?.profilePicture} text={name} alt={name} />
         <Text h4 css={{ lineHeight: "$xs" }}>
           {name}
         </Text>

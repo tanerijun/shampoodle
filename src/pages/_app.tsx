@@ -16,25 +16,25 @@ const darkTheme = createTheme({
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <NextUIProvider>
-      <ThemeProvider
-        disableTransitionOnChange
-        enableSystem
-        attribute="class"
-        value={{ light: lightTheme.className, dark: darkTheme.className }}
-      >
-        <ClerkProvider
-          appearance={{
-            baseTheme: dark,
-          }}
-          {...pageProps}
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+      {...pageProps}
+    >
+      <NextUIProvider>
+        <ThemeProvider
+          disableTransitionOnChange
+          enableSystem
+          attribute="class"
+          value={{ light: lightTheme.className, dark: darkTheme.className }}
         >
           <SiteLayout>
             <Component {...pageProps} />
           </SiteLayout>
-        </ClerkProvider>
-      </ThemeProvider>
-    </NextUIProvider>
+        </ThemeProvider>
+      </NextUIProvider>
+    </ClerkProvider>
   );
 };
 

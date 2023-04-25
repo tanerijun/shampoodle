@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { SignIn, SignOutButton, useUser } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import Sun from "~/components/icons/Sun";
 import Moon from "~/components/icons/Moon";
-import { Avatar, Button, Navbar, Popover, Text } from "@nextui-org/react";
+import {
+  Avatar,
+  Button,
+  Modal,
+  Navbar,
+  Popover,
+  Text,
+} from "@nextui-org/react";
 
 export default function SiteHeader() {
   return (
@@ -58,12 +65,31 @@ function ThemeSwitcher() {
 
 function UserInfo() {
   const { user } = useUser();
+  const [signInModalVisible, setSignInModalVisible] = useState(false);
+
+  const showSignInModal = () => {
+    setSignInModalVisible(true);
+  };
+
+  const hideSignInModal = () => {
+    setSignInModalVisible(false);
+  };
 
   if (!user) {
     return (
-      <SignInButton>
-        <Button>Sign In</Button>
-      </SignInButton>
+      <>
+        <Button onClick={showSignInModal}>Sign In</Button>
+        <Modal
+          aria-labelledby="sign in"
+          open={signInModalVisible}
+          onClose={hideSignInModal}
+          css={{ backgroundColor: "transparent", minWidth: "fit-content" }}
+        >
+          <Modal.Body>
+            <SignIn />
+          </Modal.Body>
+        </Modal>
+      </>
     );
   }
 
