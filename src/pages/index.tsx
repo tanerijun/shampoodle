@@ -44,7 +44,7 @@ const Home: NextPage = () => {
       <SignedIn>
         <Spacer y={2} />
         <CreatePostWizard />
-        <Spacer y={1} />
+        <Spacer y={2} />
         <Divider />
       </SignedIn>
       <Spacer y={1} />
