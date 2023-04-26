@@ -7,7 +7,13 @@ import Send from "./icons/Send";
 export default function PostWizard() {
   const { user } = useUser();
 
-  const { mutate } = api.post.create.useMutation();
+  const { mutate, isLoading, isError, error } = api.post.create.useMutation();
+
+  // Get the error message
+  let errorMessage = error?.message;
+  if (error?.data?.zodError?.fieldErrors.post?.length) {
+    errorMessage = error.data.zodError.fieldErrors.post[0];
+  }
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -50,6 +56,9 @@ export default function PostWizard() {
           flex: 1,
           resize: "none",
         }}
+        disabled={isLoading}
+        helperText={isError ? errorMessage : undefined}
+        helperColor={isError ? "error" : undefined}
       />
       <Spacer x={1} />
       <Button icon={<Send />} auto onPress={handleSubmit} />
