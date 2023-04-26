@@ -15,9 +15,10 @@ export const postRouter = createTRPCRouter({
       })
     ).map((user) => ({
       id: user.id,
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      name:
+        user.firstName + (user.lastName ? " " + user.lastName : "") ||
+        user.username ||
+        "A kind stranger",
       profilePicture: user.profileImageUrl,
     }));
 

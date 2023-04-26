@@ -17,10 +17,7 @@ export default function PostsRenderer({ posts }: { posts: Posts }) {
 }
 
 function PostView({ post, author }: Post) {
-  const name =
-    author?.firstName + (author?.lastName ? " " + author.lastName : "") ||
-    author?.username ||
-    "A kind stranger";
+  if (!author) return null;
 
   return (
     <Card css={{ p: "$6", mw: "400px" }}>
@@ -31,9 +28,13 @@ function PostView({ post, author }: Post) {
           alignItems: "end",
         }}
       >
-        <Avatar src={author?.profilePicture} text={name} alt={name} />
+        <Avatar
+          src={author.profilePicture}
+          text={author.name}
+          alt={author.name}
+        />
         <Text h4 css={{ lineHeight: "$xs" }}>
-          {name}
+          {author.name}
         </Text>
       </Card.Header>
       <Card.Body css={{ py: "$2" }}>
