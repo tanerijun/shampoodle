@@ -44,13 +44,33 @@ export const postRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
+      const { post } = input;
+      const cleanedPost = cleanPost(post);
+
       const newPost = await ctx.prisma.post.create({
         data: {
           authorId: ctx.userId,
-          content: input.post,
+          content: cleanedPost,
         },
       });
 
       return newPost;
     }),
 });
+
+function cleanPost(post: string) {
+  // Trim whitespaces
+  let res = post.trim();
+
+  // Post must start with a capital letter
+  if (res.charAt(0) !== res.charAt(0).toUpperCase()) {
+    res = res.charAt(0).toUpperCase() + res.slice(1);
+  }
+
+  // Post must end with a punctuation mark (!, ?, .)
+  if (!["!", "?", "."].includes(res.charAt(res.length - 1))) {
+    res += ".";
+  }
+
+  return res;
+}
