@@ -1,7 +1,8 @@
-import { Card, Grid, Text, Avatar } from "@nextui-org/react";
+import { Card, Grid, Text, Avatar, Container } from "@nextui-org/react";
 import { type RouterOutputs } from "~/utils/api";
 import ThumbsUp from "~/components/icons/ThumbsUp";
 import ThumbsDown from "~/components/icons/ThumbsDown";
+import { formatDate } from "~/utils/date";
 
 type Posts = RouterOutputs["post"]["getAll"];
 type Post = Posts[0];
@@ -25,7 +26,6 @@ function PostView({ post, author }: Post) {
         <Card.Header
           css={{
             display: "flex",
-            gap: "$6",
             alignItems: "end",
           }}
         >
@@ -34,9 +34,12 @@ function PostView({ post, author }: Post) {
             text={author.name}
             alt={author.name}
           />
-          <Text h4 css={{ lineHeight: "$xs" }}>
-            {author.name}
-          </Text>
+          <Container>
+            <Text h4 css={{ lineHeight: "$xs" }}>
+              {author.name}
+            </Text>
+            <Text>{formatDate(post.createdAt)}</Text>
+          </Container>
         </Card.Header>
         <Card.Body css={{ py: "$2" }}>
           <Text>{post.content}</Text>
