@@ -26,19 +26,22 @@ function PostView({ post, author }: Post) {
         <Card.Header
           css={{
             display: "flex",
-            alignItems: "end",
+            alignItems: "center",
           }}
         >
           <Avatar
             src={author.profilePicture}
             text={author.name}
             alt={author.name}
+            size="lg"
           />
           <Container>
             <Text h4 css={{ lineHeight: "$xs" }}>
               {author.name}
             </Text>
-            <Text>{formatDate(post.createdAt)}</Text>
+            <Text size="$xs" css={{ lineHeight: "$xs" }}>
+              {formatDate(post.createdAt)}
+            </Text>
           </Container>
         </Card.Header>
         <Card.Body css={{ py: "$2" }}>
