@@ -7,6 +7,7 @@ import Send from "./icons/Send";
 export default function PostWizard() {
   const { user } = useUser();
 
+  const reactQueryCtx = api.useContext();
   const { mutate, isLoading, isError, error } = api.post.create.useMutation();
 
   // Get the error message
@@ -17,6 +18,10 @@ export default function PostWizard() {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
+  const clearTextBox = () => {
+    textAreaRef.current!.value = "";
+  };
+
   const handleSubmit = () => {
     const post = textAreaRef.current?.value;
 
@@ -24,11 +29,17 @@ export default function PostWizard() {
       return;
     }
 
-    mutate({
-      post,
-    });
-
-    textAreaRef.current.value = "";
+    mutate(
+      {
+        post,
+      },
+      {
+        onSuccess: () => {
+          reactQueryCtx.post.getAll.invalidate();
+          clearTextBox();
+        },
+      }
+    );
   };
 
   if (!user) {
