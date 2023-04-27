@@ -18,14 +18,15 @@ export const postRouter = createTRPCRouter({
       await clerkClient.users.getUserList({
         userId: posts.map((post) => post.authorId),
       })
-    ).map((user) => ({
-      id: user.id,
-      name:
-        user.firstName + (user.lastName ? " " + user.lastName : "") ||
-        user.username ||
-        "A kind stranger",
-      profilePicture: user.profileImageUrl,
-    }));
+    ).map((user) => {
+      const name = `${user.firstName || ""} ${user.lastName || ""}`.trim();
+
+      return {
+        id: user.id,
+        name,
+        profilePicture: user.profileImageUrl,
+      };
+    });
 
     return posts.map((post) => ({
       post,

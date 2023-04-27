@@ -42,8 +42,8 @@ import { getAuth } from "@clerk/nextjs/server";
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = (_opts: CreateNextContextOptions) => {
-  const { req } = _opts;
+export const createTRPCContext = (opts: CreateNextContextOptions) => {
+  const { req } = opts;
 
   const { userId } = getAuth(req);
 

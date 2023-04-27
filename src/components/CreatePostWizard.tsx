@@ -19,7 +19,9 @@ export default function PostWizard() {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const clearTextBox = () => {
-    textAreaRef.current!.value = "";
+    if (textAreaRef.current) {
+      textAreaRef.current.value = "";
+    }
   };
 
   const handleSubmit = () => {
@@ -35,7 +37,7 @@ export default function PostWizard() {
       },
       {
         onSuccess: () => {
-          reactQueryCtx.post.getAll.invalidate();
+          void reactQueryCtx.post.getAll.invalidate();
           clearTextBox();
         },
       }
