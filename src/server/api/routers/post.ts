@@ -1,4 +1,5 @@
 import { clerkClient } from "@clerk/nextjs/server";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import {
@@ -45,12 +46,24 @@ export const postRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
+      const { userId } = ctx;
+
+      // Prevent users from spamming the API
+      const { success } = await ctx.ratelimit.limit(userId);
+
+      if (!success) {
+        throw new TRPCError({
+          code: "TOO_MANY_REQUESTS",
+          message: "You are posting too much. Please try again later.",
+        });
+      }
+
       const { post } = input;
       const cleanedPost = cleanPost(post);
 
       const newPost = await ctx.prisma.post.create({
         data: {
-          authorId: ctx.userId,
+          authorId: userId,
           content: cleanedPost,
         },
       });
