@@ -3,6 +3,7 @@ import { Avatar, Button, Container, Spacer, Textarea } from "@nextui-org/react";
 import { useRef } from "react";
 import { api } from "~/utils/api";
 import Send from "./icons/Send";
+import Toast from "./ui/Toast";
 
 export default function PostWizard() {
   const { user } = useUser();
@@ -39,6 +40,11 @@ export default function PostWizard() {
         onSuccess: () => {
           void reactQueryCtx.post.getAll.invalidate();
           clearTextBox();
+        },
+        onError: () => {
+          if (errorMessage) {
+            Toast(errorMessage);
+          }
         },
       }
     );

@@ -2,6 +2,7 @@ import Head from "next/head";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import { Container } from "@nextui-org/react";
+import { Toaster } from "react-hot-toast";
 
 export default function SiteLayout({
   children,
@@ -18,6 +19,8 @@ export default function SiteLayout({
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Toaster position="bottom-center" />
 
       <Container sm>
         <SiteHeader />
