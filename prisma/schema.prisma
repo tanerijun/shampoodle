@@ -18,5 +18,8 @@ model Post {
     content  String
     authorId String @db.VarChar(255)
 
+    upvotes   Int @default(0)
+    downvotes Int @default(0)
+
     @@index([authorId])
 }

@@ -36,7 +36,7 @@ export const postRouter = createTRPCRouter({
     }));
   }),
 
-  getByUser: publicProcedure
+  getAllByUser: publicProcedure
     .input(z.object({ userId: z.string() }))
     .query(async ({ ctx, input }) => {
       const { userId } = input;

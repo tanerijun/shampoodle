@@ -19,7 +19,7 @@ export default function UserPage() {
     });
 
   const { data: userPosts, isLoading: isLoadingUserPosts } =
-    api.post.getByUser.useQuery(
+    api.post.getAllByUser.useQuery(
       {
         userId: userInfo?.id as string,
       },
