@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { api } from "~/utils/api";
 import Send from "./icons/Send";
 import Toast from "./ui/Toast";
+import Link from "next/link";
 
 export default function PostWizard() {
   const { user } = useUser();
@@ -61,11 +62,15 @@ export default function PostWizard() {
         alignItems: "center",
       }}
     >
-      <Avatar
-        src={user.profileImageUrl}
-        alt={user.username ?? undefined}
-        size="xl"
-      />
+      <Link href={`/user/${user.username ?? ""}`}>
+        <Avatar
+          src={user.profileImageUrl}
+          alt={user.username ?? undefined}
+          size="xl"
+          zoomed
+          css={{ cursor: "pointer" }}
+        />
+      </Link>
       <Spacer x={1} />
       <Textarea
         ref={textAreaRef}
