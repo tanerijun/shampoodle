@@ -76,7 +76,13 @@ export default function PostWizard() {
           resize: "none",
         }}
         disabled={isLoading}
-        helperText={isError ? errorMessage : undefined}
+        helperText={
+          isError
+            ? errorMessage
+            : isLoading
+            ? "Sharing with everyone..."
+            : undefined
+        }
         helperColor={isError ? "error" : undefined}
       />
       <Spacer x={1} />
