@@ -40,9 +40,9 @@ export const postRouter = createTRPCRouter({
       z.object({
         post: z
           .string()
+          .trim()
           .min(20, { message: "A good shower thought should be longer." })
-          .max(200, { message: "A good shower thought should be shorter." })
-          .trim(),
+          .max(200, { message: "A good shower thought should be shorter." }),
       })
     )
     .mutation(async ({ ctx, input }) => {
