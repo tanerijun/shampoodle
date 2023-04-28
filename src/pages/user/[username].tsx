@@ -1,6 +1,7 @@
-import { Container, Loading, Text } from "@nextui-org/react";
+import { Loading, Text } from "@nextui-org/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import MainContentWrapper from "~/components/MainContentWrapper";
 import { api } from "~/utils/api";
 
 export default function UserPage() {
@@ -18,20 +19,11 @@ export default function UserPage() {
 
   if (isLoading) {
     return (
-      <Container
-        fluid
-        css={{
-          display: "flex",
-          flex: 1,
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <MainContentWrapper>
         <Loading size="lg">
           <Text>Finding user...</Text>
         </Loading>
-      </Container>
+      </MainContentWrapper>
     );
   }
 
@@ -45,9 +37,9 @@ export default function UserPage() {
       <Head>
         <title>{user.username} | Shampoodle</title>
       </Head>
-      <main>
+      <MainContentWrapper>
         <h1>{user.name}</h1>
-      </main>
+      </MainContentWrapper>
     </>
   );
 }

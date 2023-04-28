@@ -1,18 +1,11 @@
 import { type NextPage } from "next";
-import { Container, Loading, Text, type CSS, Spacer } from "@nextui-org/react";
+import { Loading, Text, Spacer } from "@nextui-org/react";
 import { api } from "~/utils/api";
 import { SignedIn } from "@clerk/nextjs";
 import CreatePostWizard from "~/components/CreatePostWizard";
 import PostsRenderer from "~/components/PostsRenderer";
 import Divider from "~/components/ui/Divider";
-
-const containerStyles: CSS = {
-  display: "flex",
-  flex: 1,
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-};
+import MainContentWrapper from "~/components/MainContentWrapper";
 
 const Home: NextPage = () => {
   const { data: posts, isLoading } = api.post.getAll.useQuery();
@@ -21,26 +14,26 @@ const Home: NextPage = () => {
 
   if (isLoading) {
     return (
-      <Container fluid css={containerStyles}>
+      <MainContentWrapper>
         <Loading size="lg">
           <Text>Finding shower thoughts from all over the world...</Text>
         </Loading>
-      </Container>
+      </MainContentWrapper>
     );
   }
 
   if (!posts) {
     return (
-      <Container fluid css={containerStyles}>
+      <MainContentWrapper>
         <Text>
           There&apos;re no shower thoughts here. Maybe you can add one?
         </Text>
-      </Container>
+      </MainContentWrapper>
     );
   }
 
   return (
-    <Container fluid as="main" css={containerStyles}>
+    <MainContentWrapper>
       <SignedIn>
         <Spacer y={2} />
         <CreatePostWizard />
@@ -49,7 +42,7 @@ const Home: NextPage = () => {
       </SignedIn>
       <Spacer y={1} />
       <PostsRenderer posts={posts} />
-    </Container>
+    </MainContentWrapper>
   );
 };
 
