@@ -21,15 +21,15 @@ export default function UserPage() {
       <Container
         fluid
         css={{
-          minHeight: "100vh",
           display: "flex",
+          flex: 1,
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
         <Loading size="lg">
-          <Text>Finding shower thoughts from all over the world...</Text>
+          <Text>Finding user...</Text>
         </Loading>
       </Container>
     );

@@ -7,8 +7,8 @@ import PostsRenderer from "~/components/PostsRenderer";
 import Divider from "~/components/ui/Divider";
 
 const containerStyles: CSS = {
-  minHeight: "100vh",
   display: "flex",
+  flex: 1,
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",

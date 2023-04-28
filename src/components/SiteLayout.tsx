@@ -22,7 +22,15 @@ export default function SiteLayout({
 
       <Toaster position="bottom-center" />
 
-      <Container sm>
+      <Container
+        sm
+        css={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          border: "1px solid red",
+        }}
+      >
         <SiteHeader />
         {children}
         <SiteFooter />
