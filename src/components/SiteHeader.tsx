@@ -8,7 +8,7 @@ import {
   Button,
   Modal,
   Navbar,
-  Popover,
+  Dropdown,
   Text,
 } from "@nextui-org/react";
 import Link from "next/link";
@@ -35,9 +35,14 @@ function Logo() {
     <Link href="/">
       <Text
         h1
-        size={30}
         weight="bold"
-        css={{ textGradient: "45deg, $primary -20%, $secondary 50%" }}
+        css={{
+          textGradient: "45deg, $secondary 0%, $primary 90%",
+          fontSize: "$3xl",
+          "@sm": {
+            fontSize: "$4xl",
+          },
+        }}
       >
         Shampoodle
       </Text>
@@ -62,6 +67,7 @@ function ThemeSwitcher() {
       auto
       icon={!mounted ? <Sun /> : theme === "dark" ? <Moon /> : <Sun />}
       onClick={toggleTheme}
+      color="gradient"
     />
   );
 }
@@ -81,7 +87,9 @@ function UserInfo() {
   if (!user) {
     return (
       <>
-        <Button onClick={showSignInModal}>Sign In</Button>
+        <Button color="gradient" auto onClick={showSignInModal}>
+          Sign In
+        </Button>
         <Modal
           aria-labelledby="sign in"
           open={signInModalVisible}
@@ -97,8 +105,8 @@ function UserInfo() {
   }
 
   return (
-    <Popover>
-      <Popover.Trigger>
+    <Dropdown>
+      <Dropdown.Trigger>
         <Avatar
           src={user?.profileImageUrl}
           text={user?.username ?? "👋"}
@@ -106,12 +114,26 @@ function UserInfo() {
           zoomed
           alt="User avatar"
         />
-      </Popover.Trigger>
-      <Popover.Content>
-        <SignOutButton>
-          <Button>Sign Out</Button>
-        </SignOutButton>
-      </Popover.Content>
-    </Popover>
+      </Dropdown.Trigger>
+      <Dropdown.Menu
+        aria-label="user actions"
+        color="secondary"
+        disabledKeys={["signed-in-as"]}
+      >
+        <Dropdown.Item key="signed-in-as">
+          <Text>Signed in as: {user.username}</Text>
+        </Dropdown.Item>
+        <Dropdown.Item key="all-posts" withDivider>
+          <Link href={`/user/${user.username ?? ""}`}>
+            <Text>All Posts</Text>
+          </Link>
+        </Dropdown.Item>
+        <Dropdown.Item key="sign-out">
+          <SignOutButton>
+            <Text>Sign Out</Text>
+          </SignOutButton>
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 }

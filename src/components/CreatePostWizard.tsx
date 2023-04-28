@@ -1,5 +1,12 @@
 import { useUser } from "@clerk/nextjs";
-import { Avatar, Button, Container, Spacer, Textarea } from "@nextui-org/react";
+import {
+  Avatar,
+  Button,
+  Container,
+  Spacer,
+  Textarea,
+  Text,
+} from "@nextui-org/react";
 import { useRef } from "react";
 import { api } from "~/utils/api";
 import Send from "./icons/Send";
@@ -59,18 +66,14 @@ export default function PostWizard() {
     <Container
       css={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
+        // "@xs": {
+        //   flexDirection: "row",
+        // },
+        border: "1px solid lime",
       }}
     >
-      <Link href={`/user/${user.username ?? ""}`}>
-        <Avatar
-          src={user.profileImageUrl}
-          alt={user.username ?? undefined}
-          size="xl"
-          zoomed
-          css={{ cursor: "pointer" }}
-        />
-      </Link>
       <Spacer x={1} />
       <Textarea
         ref={textAreaRef}
@@ -79,6 +82,7 @@ export default function PostWizard() {
         css={{
           flex: 1,
           resize: "none",
+          width: "100%",
         }}
         disabled={isLoading}
         helperText={
@@ -91,7 +95,9 @@ export default function PostWizard() {
         helperColor={isError ? "error" : undefined}
       />
       <Spacer x={1} />
-      <Button icon={<Send />} auto onPress={handleSubmit} />
+      <Button icon={<Send />} auto color="gradient" onPress={handleSubmit}>
+        Share your thought
+      </Button>
     </Container>
   );
 }

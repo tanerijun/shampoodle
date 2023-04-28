@@ -15,6 +15,7 @@ export default function MainContentWrapper({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        padding: 0,
       }}
     >
       {children}

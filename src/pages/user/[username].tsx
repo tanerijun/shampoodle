@@ -64,7 +64,7 @@ export default function UserPage() {
         <title>{userInfo.username} | Shampoodle</title>
       </Head>
       <MainContentWrapper>
-        <h1>{userInfo.name}</h1>
+        <Text h2>Shower thoughts by {userInfo.name}</Text>
         {postData && <PostsRenderer posts={postData} />}
       </MainContentWrapper>
     </>
