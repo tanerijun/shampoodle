@@ -94,7 +94,14 @@ function UserInfo() {
           aria-labelledby="sign in"
           open={signInModalVisible}
           onClose={hideSignInModal}
-          css={{ backgroundColor: "transparent", minWidth: "fit-content" }}
+          css={{
+            backgroundColor: "transparent",
+            minWidth: "fit-content",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 0,
+          }}
         >
           <Modal.Body>
             <SignIn />
