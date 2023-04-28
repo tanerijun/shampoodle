@@ -10,8 +10,6 @@ import MainContentWrapper from "~/components/MainContentWrapper";
 const Home: NextPage = () => {
   const { data: posts, isLoading } = api.post.getAll.useQuery();
 
-  console.log(posts); // DEBUG
-
   if (isLoading) {
     return (
       <MainContentWrapper>
