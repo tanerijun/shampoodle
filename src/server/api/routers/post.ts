@@ -25,6 +25,7 @@ export const postRouter = createTRPCRouter({
       return {
         id: user.id,
         name,
+        username: user.username,
         profilePicture: user.profileImageUrl,
       };
     });

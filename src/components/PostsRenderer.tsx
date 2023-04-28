@@ -3,6 +3,7 @@ import { type RouterOutputs } from "~/utils/api";
 import ThumbsUp from "~/components/icons/ThumbsUp";
 import ThumbsDown from "~/components/icons/ThumbsDown";
 import { formatDate } from "~/utils/date";
+import Link from "next/link";
 
 type Posts = RouterOutputs["post"]["getAll"];
 type Post = Posts[0];
@@ -29,17 +30,31 @@ function PostView({ post, author }: Post) {
             alignItems: "center",
           }}
         >
-          <Avatar
-            src={author.profilePicture}
-            text={author.name}
-            alt={author.name}
-            size="lg"
-          />
+          <Link href={`/user/${author.username || ""}`}>
+            <Avatar
+              src={author.profilePicture}
+              text={author.name}
+              alt={author.name}
+              size="lg"
+              zoomed
+              css={{ cursor: "pointer" }}
+            />
+          </Link>
           <Container>
-            <Text h4 css={{ lineHeight: "$xs" }}>
-              {author.name}
-            </Text>
-            <Text size="$xs" css={{ lineHeight: "$xs" }}>
+            <Link href={`/user/${author.username || ""}`}>
+              <Text
+                h4
+                css={{
+                  lineHeight: "$xs",
+                  "&:hover": { color: "$secondary" },
+                  transition: "color 0.2s ease",
+                  width: "fit-content",
+                }}
+              >
+                {author.name}
+              </Text>
+            </Link>
+            <Text size="$xs" css={{ lineHeight: "$xs", userSelect: "none" }}>
               {formatDate(post.createdAt)}
             </Text>
           </Container>

@@ -11,6 +11,7 @@ import {
   Popover,
   Text,
 } from "@nextui-org/react";
+import Link from "next/link";
 
 export default function SiteHeader() {
   return (
@@ -31,14 +32,16 @@ export default function SiteHeader() {
 
 function Logo() {
   return (
-    <Text
-      h1
-      size={30}
-      weight="bold"
-      css={{ textGradient: "45deg, $primary -20%, $secondary 50%" }}
-    >
-      Shampoodle
-    </Text>
+    <Link href="/">
+      <Text
+        h1
+        size={30}
+        weight="bold"
+        css={{ textGradient: "45deg, $primary -20%, $secondary 50%" }}
+      >
+        Shampoodle
+      </Text>
+    </Link>
   );
 }
 
