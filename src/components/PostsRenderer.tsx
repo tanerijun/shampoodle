@@ -10,12 +10,7 @@ type Post = Posts[0];
 
 export default function PostsRenderer({ posts }: { posts: Posts }) {
   return (
-    <Grid.Container
-      gap={0}
-      css={{
-        border: "1px solid red",
-      }}
-    >
+    <Grid.Container>
       {posts.map((postData) => (
         <PostView key={postData.post.id} {...postData} />
       ))}
@@ -30,15 +25,13 @@ function PostView({ post, author }: Post) {
     <Grid
       sm={6}
       css={{
-        border: "1px solid blue",
+        width: "100%",
+        p: "$6",
       }}
     >
       <Card
         css={{
           p: "$6",
-          border: "1px solid white",
-          margin: "$6",
-          minWidth: "stretch",
         }}
       >
         <Card.Header

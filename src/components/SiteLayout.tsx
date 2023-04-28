@@ -28,7 +28,6 @@ export default function SiteLayout({
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
-          border: "1px solid yellow",
           padding: 0,
         }}
       >

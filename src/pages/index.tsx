@@ -38,7 +38,7 @@ const Home: NextPage = () => {
         <Spacer y={2} />
         <Divider />
       </SignedIn>
-      <Spacer y={1} />
+      <Spacer y={1.5} />
       <PostsRenderer posts={posts} />
     </MainContentWrapper>
   );

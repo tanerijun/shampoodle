@@ -1,17 +1,9 @@
 import { useUser } from "@clerk/nextjs";
-import {
-  Avatar,
-  Button,
-  Container,
-  Spacer,
-  Textarea,
-  Text,
-} from "@nextui-org/react";
+import { Button, Container, Spacer, Textarea } from "@nextui-org/react";
 import { useRef } from "react";
 import { api } from "~/utils/api";
 import Send from "./icons/Send";
 import Toast from "./ui/Toast";
-import Link from "next/link";
 
 export default function PostWizard() {
   const { user } = useUser();
@@ -64,14 +56,12 @@ export default function PostWizard() {
 
   return (
     <Container
+      fluid
       css={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        // "@xs": {
-        //   flexDirection: "row",
-        // },
-        border: "1px solid lime",
+        padding: "$6",
       }}
     >
       <Spacer x={1} />
