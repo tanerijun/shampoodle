@@ -1,9 +1,26 @@
 import { Modal, Text } from "@nextui-org/react";
 import { useState } from "react";
 
+function getVisitedStatusFromLocalStorage() {
+  const visited = localStorage.getItem("shampoodle:visited");
+  if (visited === null) {
+    return false;
+  }
+  return visited === "true";
+}
+
+function setVisitedStatusToLocalStorage() {
+  localStorage.setItem("shampoodle:visited", "true");
+}
+
 export default function Welcome() {
-  const [visible, setVisible] = useState(true);
-  const closeHandler = () => setVisible(false);
+  const [visible, setVisible] = useState(
+    () => !getVisitedStatusFromLocalStorage()
+  );
+  const closeHandler = () => {
+    setVisible(false);
+    setVisitedStatusToLocalStorage();
+  };
 
   return (
     <Modal
