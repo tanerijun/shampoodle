@@ -6,6 +6,7 @@ import CreatePostWizard from "~/components/CreatePostWizard";
 import PostsRenderer from "~/components/PostsRenderer";
 import Divider from "~/components/ui/Divider";
 import MainContentWrapper from "~/components/MainContentWrapper";
+import Welcome from "~/components/Welcome";
 
 const Home: NextPage = () => {
   const { data: posts, isLoading } = api.post.getAll.useQuery();
@@ -34,6 +35,7 @@ const Home: NextPage = () => {
 
   return (
     <MainContentWrapper>
+      <Welcome />
       <SignedIn>
         <Spacer y={2} />
         <CreatePostWizard />
