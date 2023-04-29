@@ -11,8 +11,6 @@ import Welcome from "~/components/Welcome";
 const Home: NextPage = () => {
   const { data: posts, isLoading } = api.post.getAll.useQuery();
 
-  console.log(posts);
-
   if (isLoading) {
     return (
       <MainContentWrapper>
