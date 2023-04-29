@@ -16,3 +16,7 @@ Backend is serverless and hosted in US, so cold start might take a while for peo
 - TRPC
 - Prisma
 - MySQL
+
+## Live
+
+[Click me](https://shampoodle.vercel.app)
