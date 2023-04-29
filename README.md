@@ -2,11 +2,17 @@
 
 A platform to share shower thoughts
 
-## TODO
+## Note
 
-- [x] Style Clerk modal better (primary color, individual element if necessary). https://clerk.com/docs/component-customization/appearance-prop
-- [ ] On initial visit, render a guide on what the app is all about (e.g What a shower thought is)
-- [x] Sort posts by date
-- [ ] Upvote and downvote
-- [ ] Content moderation using upvote and downvote
-- [ ] Infinite scroll
+I created this project primarily to try out TRPC.
+
+Backend is serverless and hosted in US, so cold start might take a while for people on the other side of the world.
+
+## Techs Used
+
+- TypeScript
+- NextJS
+- React
+- TRPC
+- Prisma
+- MySQL
