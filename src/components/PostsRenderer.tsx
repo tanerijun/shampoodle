@@ -1,7 +1,5 @@
 import { Card, Grid, Text, Avatar, Container } from "@nextui-org/react";
 import { type RouterOutputs } from "~/utils/api";
-import ThumbsUp from "~/components/icons/ThumbsUp";
-import ThumbsDown from "~/components/icons/ThumbsDown";
 import { formatDate } from "~/utils/date";
 import Link from "next/link";
 
@@ -72,10 +70,6 @@ function PostView({ post, author }: Post) {
         <Card.Body css={{ py: "$4" }}>
           <Text>{post.content}</Text>
         </Card.Body>
-        <Card.Footer css={{ display: "flex", gap: "$6" }}>
-          <ThumbsUp />
-          <ThumbsDown />
-        </Card.Footer>
       </Card>
     </Grid>
   );
