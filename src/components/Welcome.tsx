@@ -11,7 +11,7 @@ export default function Welcome() {
       aria-labelledby="welcome-screen"
       open={visible}
       onClose={closeHandler}
-      width="fit-content"
+      width="350px"
     >
       <Modal.Header>
         <Text size={18}>
@@ -22,9 +22,11 @@ export default function Welcome() {
         </Text>
       </Modal.Header>
       <Modal.Body>
-        <Text>Shampoodle is a platform to share your shower thoughts.</Text>
-        <Text>Sign in and leave your shower thoughts for everyone else.</Text>
-        <Text>Looking forward to have your shower thoughts here 😊.</Text>
+        <Text>
+          Shampoodle is a platform to share your shower thoughts. Sign in, share
+          your shower thoughts, and enjoy reading others&apos; shower thoughts
+          😊.
+        </Text>
       </Modal.Body>
       <Modal.Footer></Modal.Footer>
     </Modal>

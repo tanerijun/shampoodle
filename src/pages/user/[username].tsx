@@ -1,4 +1,4 @@
-import { Loading, Text } from "@nextui-org/react";
+import { Container, Loading, Spacer, Text } from "@nextui-org/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import MainContentWrapper from "~/components/MainContentWrapper";
@@ -64,7 +64,11 @@ export default function UserPage() {
         <title>{userInfo.username} | Shampoodle</title>
       </Head>
       <MainContentWrapper>
-        <Text h2>Shower thoughts by {userInfo.name}</Text>
+        <Container fluid>
+          <Spacer y={2} />
+          <Text h2>Shower thoughts by {userInfo.name}</Text>
+          <Spacer y={2} />
+        </Container>
         {postData && <PostsRenderer posts={postData} />}
       </MainContentWrapper>
     </>
