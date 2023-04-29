@@ -14,12 +14,8 @@ datasource db {
 model Post {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-
-    content  String
-    authorId String @db.VarChar(255)
-
-    upvotes   Int @default(0)
-    downvotes Int @default(0)
+    content   String
+    authorId  String   @db.VarChar(255)
 
     @@index([authorId])
 }
